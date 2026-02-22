@@ -1,0 +1,91 @@
+.header {
+  width: 100%;
+  background: #f4f4f4;
+  border-bottom: 1px solid #ddd;
+}
+
+/* =========================
+   HEADINGS
+========================= */
+
+.main-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #666;
+  font-size: 14px;
+}
+
+/* Top bar */
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 60px;
+  position: relative;
+}
+
+/* Left icon */
+
+.brand-icon img {
+  width: 28px;
+}
+
+/* Center logo */
+
+.logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+/* Right icons */
+
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.lang {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .header-top {
+    padding: 15px 20px;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+
+  .main-title {
+    font-size: 22px;
+  }
+}

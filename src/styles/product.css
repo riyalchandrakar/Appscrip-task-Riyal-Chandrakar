@@ -1,0 +1,158 @@
+/* =========================
+   PRODUCT GRID
+========================= */
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+/* Large Desktop → 4 */
+@media (max-width: 1200px) {
+  .product-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Tablet → 2 */
+@media (max-width: 992px) {
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Mobile → 1 */
+@media (max-width: 600px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   PRODUCT CARD
+========================= */
+
+.product-card {
+  position: relative;
+  background: #fff;
+  padding: 16px;
+  border: 1px solid #eee;
+  transition: 0.3s ease;
+  width: 100%;
+  max-width: 100%;
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+/* =========================
+   IMAGE SECTION
+========================= */
+
+.image-wrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* 🔥 perfect square */
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.image-wrapper img {
+  width: 85%; /* slightly smaller for better look */
+  height: 85%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .image-wrapper img {
+  transform: scale(1.04);
+}
+
+/* =========================
+   PRODUCT INFO
+========================= */
+
+.product-info {
+  margin-top: 14px;
+}
+
+.product-title {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-subtext {
+  font-size: 12px;
+  color: #777;
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+.product-subtext .underline {
+  text-decoration: underline;
+  cursor: pointer;
+  color: #000;
+}
+
+/* =========================
+   WISHLIST ICON
+========================= */
+
+.wishlist {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  cursor: pointer;
+}
+
+.wishlist svg {
+  width: 18px;
+  height: 18px;
+  transition: 0.2s ease;
+}
+
+.wishlist:hover svg {
+  transform: scale(1.1);
+}
+
+/* =========================
+   MOBILE TWEAKS
+========================= */
+
+@media (max-width: 600px) {
+  .product-card {
+    padding: 14px;
+    max-width: 510px;
+  }
+
+  .product-title {
+    font-size: 12px;
+  }
+
+  .product-subtext {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 430px) {
+  .product-card {
+    max-width: 390px;
+  }
+}
+
+@media (max-width: 390px) {
+  .product-card {
+    max-width: 330px;
+  }
+}

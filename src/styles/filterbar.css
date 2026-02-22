@@ -1,0 +1,71 @@
+.filterbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  margin-top: 30px;
+}
+
+/* LEFT */
+
+.filter-left {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.items-count {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.show-filter {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  text-decoration: underline;
+  color: #666;
+}
+
+/* RIGHT */
+
+.filter-right {
+  position: relative;
+}
+
+.sort-label {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* DROPDOWN */
+
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 35px;
+  width: 220px;
+  background: #fff;
+  border: 1px solid #eee;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 8px 0;
+  z-index: 10;
+}
+
+.dropdown-item {
+  padding: 10px 15px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background: #f5f5f5;
+}
+
+.dropdown-item.active {
+  font-weight: 600;
+}

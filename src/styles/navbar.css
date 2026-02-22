@@ -1,0 +1,27 @@
+.navbar {
+  padding: 15px 0;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.navbar li {
+  font-size: 13px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.navbar li:hover {
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    display: none;
+  }
+}

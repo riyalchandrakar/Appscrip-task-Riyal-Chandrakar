@@ -1,0 +1,72 @@
+.sidebar {
+  width: 260px;
+  border-right: 1px solid #e5e5e5;
+  font-size: 13px;
+   max-width: 100%;
+  flex-shrink: 0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Block */
+
+.sidebar-block {
+  border-bottom: 1px solid #e5e5e5;
+  padding: 20px 0;
+}
+
+/* Customizable */
+
+.customizable {
+  display: flex;
+  gap: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Header */
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Chevron */
+
+.chevron {
+  font-size: 12px;
+}
+
+/* Subtext */
+
+.sidebar-subtext {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #777;
+}
+
+/* Options */
+
+.sidebar-options {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-options label {
+  display: flex;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+/* Mobile & Tablet Fix */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 100%;
+  }
+}
+
