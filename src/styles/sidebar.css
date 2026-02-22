@@ -14,14 +14,7 @@
   padding: 20px 0;
 }
 
-/* Customizable */
 
-.customizable {
-  display: flex;
-  gap: 8px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
 
 /* Header */
 
@@ -36,7 +29,8 @@
 /* Chevron */
 
 .chevron {
-  font-size: 12px;
+  font-size: 18px;
+  padding-right: 8px;
 }
 
 /* Subtext */

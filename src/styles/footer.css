@@ -1,8 +1,8 @@
 .footer {
   background: #000;
   color: #fff;
-  padding: 60px 80px;
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  padding: 60px clamp(20px, 6vw, 80px);
+  font-family: Arial, sans-serif;
 }
 
 /* Top Section */
@@ -10,7 +10,14 @@
 .footer-top {
   display: flex;
   justify-content: space-between;
-  gap: 40px;
+  gap: 100px;
+  flex-wrap: wrap;
+}
+
+.newsletter,
+.contact {
+  flex: 1;
+  min-width: 280px;
 }
 
 .newsletter h3,
@@ -29,32 +36,42 @@
 
 .newsletter-form {
   display: flex;
+  gap: 10px;
   margin-top: 15px;
+  flex-wrap: wrap;
 }
 
 .newsletter-form input {
+  flex: 1;
   padding: 10px;
-  width: 250px;
   border: none;
-  outline: none;
 }
 
 .newsletter-form button {
   padding: 10px 20px;
   background: transparent;
-  border: 1px solid #555;
+  border: 1px solid #444;
   color: #fff;
   cursor: pointer;
 }
 
-.currency-title {
-  margin-top: 20px;
+button {
+  border-radius: 5px;
 }
 
+.currency {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 5px;
+}
+
+/* Divider */
+
 hr {
-  margin: 40px 0;
-  border: 0;
+  border: none;
   border-top: 1px solid #333;
+  margin: 40px 0;
 }
 
 /* Bottom Section */
@@ -63,6 +80,12 @@ hr {
   display: flex;
   justify-content: space-between;
   gap: 40px;
+  flex-wrap: wrap;
+}
+
+.footer-col {
+  flex: 1;
+  min-width: 200px;
 }
 
 .footer-col h4 {
@@ -76,26 +99,22 @@ hr {
   padding: 0;
 }
 
-.footer-col ul li {
+.footer-col li {
   font-size: 13px;
-  margin-bottom: 8px;
   color: #ccc;
+  margin-bottom: 8px;
   cursor: pointer;
 }
 
-.footer-col ul li:hover {
+.footer-col li:hover {
   color: #fff;
 }
 
-/* Social & Payment */
-
-.socials span,
-.payments span {
-  display: inline-block;
-  margin-right: 10px;
-  font-size: 13px;
-  color: #ccc;
-  cursor: pointer;
+.socials,
+.payments {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .accept-title {
@@ -104,29 +123,25 @@ hr {
 
 .copyright {
   text-align: center;
-  margin-top: 40px;
   font-size: 12px;
   color: #888;
+  margin-top: 40px;
 }
 
-/* Responsive */
+/* Mobile */
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .footer-top,
   .footer-bottom {
     flex-direction: column;
-  }
-
-  .footer {
-    padding: 40px 20px;
   }
 
   .newsletter-form {
     flex-direction: column;
   }
 
-  .newsletter-form input {
+  .newsletter-form input,
+  .newsletter-form button {
     width: 100%;
-    margin-bottom: 10px;
   }
 }
