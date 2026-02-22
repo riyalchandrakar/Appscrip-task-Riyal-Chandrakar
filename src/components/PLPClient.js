@@ -5,12 +5,7 @@ import FilterBar from "./FilterBar";
 import Sidebar from "./Sidebar";
 import ProductCard from "./ProductCard";
 
-export default function PLPClient({ products }) {
-
-  /* =========================
-     STATE
-  ========================= */
-
+export default function PLPClient({ products = [] }) {
   const [sortType, setSortType] = useState("recommended");
   const [showFilter, setShowFilter] = useState(true);
 
@@ -18,47 +13,30 @@ export default function PLPClient({ products }) {
     CATEGORY: "All",
   });
 
-  /* =========================
-     FILTER + SORT LOGIC
-  ========================= */
-
   const processedProducts = useMemo(() => {
-    if (!products || products.length === 0) return [];
-
     let updated = [...products];
 
-    /* -------- CATEGORY FILTER -------- */
-    if (filters.CATEGORY && filters.CATEGORY !== "All") {
+    if (filters.CATEGORY !== "All") {
       updated = updated.filter(
         (item) =>
-          item.category.toLowerCase() === filters.CATEGORY.toLowerCase()
+          item.category.toLowerCase() === filters.CATEGORY.toLowerCase(),
       );
     }
 
-    /* -------- SORTING -------- */
     const sortFunctions = {
       high: (a, b) => b.price - a.price,
       low: (a, b) => a.price - b.price,
       newest: (a, b) => b.id - a.id,
       popular: (a, b) => b.rating.rate - a.rating.rate,
       recommended: (a, b) =>
-        (b.rating.rate * b.rating.count) -
-        (a.rating.rate * a.rating.count),
+        b.rating.rate * b.rating.count - a.rating.rate * a.rating.count,
     };
 
     const sortFn = sortFunctions[sortType];
-
-    if (sortFn) {
-      updated.sort(sortFn);
-    }
+    if (sortFn) updated.sort(sortFn);
 
     return updated;
-
   }, [products, sortType, filters]);
-
-  /* =========================
-     RENDER
-  ========================= */
 
   return (
     <>
@@ -71,21 +49,19 @@ export default function PLPClient({ products }) {
       />
 
       <div className="plp-layout">
-        {showFilter && (
-          <Sidebar
-            filters={filters}
-            setFilters={setFilters}
-          />
-        )}
+        {showFilter && <Sidebar filters={filters} setFilters={setFilters} />}
 
         <div className="products-section">
           <div className="product-grid">
-            {processedProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-              />
-            ))}
+            {processedProducts.length > 0 ? (
+              processedProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))
+            ) : (
+              <p style={{ textAlign: "center", width: "100%" }}>
+                No products available at the moment.
+              </p>
+            )}
           </div>
         </div>
       </div>

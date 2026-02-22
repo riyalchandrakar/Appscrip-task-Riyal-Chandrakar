@@ -9,16 +9,17 @@ export const metadata = {
 
 async function getProducts() {
   try {
-    const res = await fetch("https://fakestoreapi.com/products");
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SITE_URL}/api/products`,
+      { cache: "no-store" },
+    );
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch products");
-    }
+    if (!res.ok) return [];
 
     return await res.json();
   } catch (error) {
-    console.error("Fetch Error:", error);
-    return []; // Prevent build crash
+    console.error("Server Fetch Error:", error);
+    return [];
   }
 }
 
@@ -34,7 +35,6 @@ export default async function Home() {
 
       <PLPClient products={products} />
 
-      {/* Structured Data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
