@@ -13,19 +13,19 @@ async function getProducts() {
       cache: "no-store",
     });
 
-    console.log("STATUS:", res.status);
+    const contentType = res.headers.get("content-type");
 
-    const data = await res.json();
+    if (!res.ok || !contentType?.includes("application/json")) {
+      console.error("Invalid response:", await res.text());
+      return [];
+    }
 
-    console.log("PRODUCT COUNT:", data.length);
-
-    return data;
+    return await res.json();
   } catch (error) {
     console.error("Server Fetch Error:", error);
     return [];
   }
 }
-
 export default async function Home() {
   const products = await getProducts();
 
