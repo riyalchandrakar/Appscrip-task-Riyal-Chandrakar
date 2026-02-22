@@ -13,11 +13,13 @@ async function getProducts() {
       cache: "no-store",
     });
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch products");
-    }
+    console.log("STATUS:", res.status);
 
-    return await res.json();
+    const data = await res.json();
+
+    console.log("PRODUCT COUNT:", data.length);
+
+    return data;
   } catch (error) {
     console.error("Server Fetch Error:", error);
     return [];
