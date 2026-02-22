@@ -1,6 +1,7 @@
 import PLPClient from "../components/PLPClient";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic"; // 🔥 Force runtime render
+export const revalidate = 0; // 🔥 Disable static cache
 
 export const metadata = {
   title: "Discover Our Products",
@@ -11,12 +12,16 @@ async function getProducts() {
   try {
     const res = await fetch("https://fakestoreapi.com/products", {
       cache: "no-store",
+      headers: {
+        Accept: "application/json",
+      },
     });
 
     const contentType = res.headers.get("content-type");
 
+    // 🔥 Safety check (Very Important)
     if (!res.ok || !contentType?.includes("application/json")) {
-      console.error("Invalid response:", await res.text());
+      console.error("Invalid response from FakeStore");
       return [];
     }
 
@@ -26,6 +31,7 @@ async function getProducts() {
     return [];
   }
 }
+
 export default async function Home() {
   const products = await getProducts();
 
@@ -37,17 +43,6 @@ export default async function Home() {
       </p>
 
       <PLPClient products={products} />
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ItemList",
-            name: "Product List",
-          }),
-        }}
-      />
     </main>
   );
 }
