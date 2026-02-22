@@ -9,12 +9,13 @@ export const metadata = {
 
 async function getProducts() {
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SITE_URL}/api/products`,
-      { cache: "no-store" },
-    );
+    const res = await fetch("https://fakestoreapi.com/products", {
+      cache: "no-store",
+    });
 
-    if (!res.ok) return [];
+    if (!res.ok) {
+      throw new Error("Failed to fetch products");
+    }
 
     return await res.json();
   } catch (error) {
