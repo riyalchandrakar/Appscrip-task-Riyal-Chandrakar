@@ -12,15 +12,15 @@ export async function GET() {
 
     const text = await res.text();
 
-    try {
-      const data = JSON.parse(text);
-      return Response.json(data);
-    } catch {
-      console.error("FakeStore returned HTML instead of JSON");
-      return Response.json([], { status: 200 });
-    }
+    return new Response(text, {
+      status: res.status,
+      headers: {
+        "Content-Type": res.headers.get("content-type") || "text/plain",
+      },
+    });
   } catch (error) {
-    console.error("API Route Error:", error);
-    return Response.json([], { status: 200 });
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+    });
   }
 }
