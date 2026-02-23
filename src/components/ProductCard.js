@@ -1,30 +1,38 @@
-import "../styles/product.css";
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
+import "../styles/product.css";
 
 export default function ProductCard({ product }) {
-  const imageUrl = product.images?.[0] || "/placeholder.png";
+  const fallbackImage = "/placeholder.png";
+  const initialImage = product?.images?.[0] || fallbackImage;
+
+  const [imageSrc, setImageSrc] = useState(initialImage);
 
   return (
     <div className="product-card">
       {/* Product Image */}
       <div className="image-wrapper">
         <Image
-          src={imageUrl}
-          alt={product.title || "Product Image"}
+          src={imageSrc}
+          alt={product?.title || "Product Image"}
           width={300}
           height={300}
           loading="lazy"
+          unoptimized={true}
           style={{ objectFit: "cover" }}
+          onError={() => setImageSrc(fallbackImage)}
         />
       </div>
 
       {/* Product Info */}
       <div className="product-info">
-        <h2 className="product-title">{product.title}</h2>
+        <h2 className="product-title">{product?.title}</h2>
 
-        <p className="product-price">₹ {product.price}</p>
+        <p className="product-price">₹ {product?.price}</p>
 
-        <p className="product-subtext">Category: {product.category?.name}</p>
+        <p className="product-subtext">Category: {product?.category?.name}</p>
       </div>
 
       {/* Wishlist Icon */}
