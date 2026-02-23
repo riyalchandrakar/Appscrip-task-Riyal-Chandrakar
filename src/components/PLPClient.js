@@ -16,24 +16,27 @@ export default function PLPClient({ products = [] }) {
   const processedProducts = useMemo(() => {
     let updated = [...products];
 
+    // ✅ Category filter (Platzi structure)
     if (filters.CATEGORY !== "All") {
       updated = updated.filter(
         (item) =>
-          item.category.toLowerCase() === filters.CATEGORY.toLowerCase(),
+          item.category?.name?.toLowerCase() === filters.CATEGORY.toLowerCase(),
       );
     }
 
+    // ✅ Sorting (rating not available in Platzi API)
     const sortFunctions = {
       high: (a, b) => b.price - a.price,
       low: (a, b) => a.price - b.price,
       newest: (a, b) => b.id - a.id,
-      popular: (a, b) => b.rating.rate - a.rating.rate,
-      recommended: (a, b) =>
-        b.rating.rate * b.rating.count - a.rating.rate * a.rating.count,
+      popular: (a, b) => b.price - a.price, // fallback
+      recommended: (a, b) => b.price - a.price, // fallback
     };
 
     const sortFn = sortFunctions[sortType];
-    if (sortFn) updated.sort(sortFn);
+    if (sortFn) {
+      updated.sort(sortFn);
+    }
 
     return updated;
   }, [products, sortType, filters]);
@@ -49,7 +52,14 @@ export default function PLPClient({ products = [] }) {
       />
 
       <div className="plp-layout">
-        {showFilter && <Sidebar filters={filters} setFilters={setFilters} />}
+        {/* ✅ Pass products to Sidebar for dynamic categories */}
+        {showFilter && (
+          <Sidebar
+            products={products}
+            filters={filters}
+            setFilters={setFilters}
+          />
+        )}
 
         <div className="products-section">
           <div className="product-grid">

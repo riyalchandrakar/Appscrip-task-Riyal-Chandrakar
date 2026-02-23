@@ -1,29 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import "../styles/sidebar.css";
 
-export default function Sidebar({ filters, setFilters }) {
-  const [open, setOpen] = useState(false);
+export default function Sidebar({ products = [], filters, setFilters }) {
+  const [open, setOpen] = useState(true);
 
-  const categories = [
-    "All",
-    "electronics",
-    "jewelery",
-    "men's clothing",
-    "women's clothing",
-  ];
+  // ✅ Generate categories dynamically from products
+  const categories = useMemo(() => {
+    const unique = new Set(
+      products.map((p) => p.category?.name).filter(Boolean),
+    );
+
+    return ["All", ...Array.from(unique)];
+  }, [products]);
 
   return (
     <aside className="sidebar">
-      {/* CATEGORY FILTER */}
       <div className="sidebar-block">
         <div className="sidebar-header" onClick={() => setOpen(!open)}>
           <span>CATEGORY</span>
           <span className="chevron">{open ? "⌃" : "⌄"}</span>
         </div>
 
-        {/* Selected value preview */}
         <div className="sidebar-subtext">{filters.CATEGORY}</div>
 
         {open && (

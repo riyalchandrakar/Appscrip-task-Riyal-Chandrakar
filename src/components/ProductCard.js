@@ -2,16 +2,19 @@ import "../styles/product.css";
 import Image from "next/image";
 
 export default function ProductCard({ product }) {
+  const imageUrl = product.images?.[0] || "/placeholder.png";
+
   return (
     <div className="product-card">
       {/* Product Image */}
       <div className="image-wrapper">
         <Image
-          src={product.image}
+          src={imageUrl}
           alt={product.title || "Product Image"}
+          width={300}
+          height={300}
           loading="lazy"
-          width="300"
-          height="300"
+          style={{ objectFit: "cover" }}
         />
       </div>
 
@@ -19,10 +22,9 @@ export default function ProductCard({ product }) {
       <div className="product-info">
         <h2 className="product-title">{product.title}</h2>
 
-        <p className="product-subtext">
-          <span className="underline">Sign in</span> or Create an account to see
-          pricing
-        </p>
+        <p className="product-price">₹ {product.price}</p>
+
+        <p className="product-subtext">Category: {product.category?.name}</p>
       </div>
 
       {/* Wishlist Icon */}

@@ -5,16 +5,18 @@ export const revalidate = 0;
 
 async function getProducts() {
   try {
-    const res = await fetch(
-      `${process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"}/api/products`,
-      { cache: "no-store" },
-    );
+    const res = await fetch("https://api.escuelajs.co/api/v1/products", {
+      cache: "no-store",
+    });
 
     if (!res.ok) return [];
 
-    return await res.json();
+    const data = await res.json();
+
+    // Optional: limit products (API bohot zyada deta hai)
+    return data.slice(0, 20);
   } catch (error) {
-    console.error("Page Fetch Error:", error);
+    console.error("Server Fetch Error:", error);
     return [];
   }
 }
