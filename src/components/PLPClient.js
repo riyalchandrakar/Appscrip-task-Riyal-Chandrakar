@@ -16,7 +16,7 @@ export default function PLPClient({ products = [] }) {
   const processedProducts = useMemo(() => {
     let updated = [...products];
 
-    // ✅ Category filter (Platzi structure)
+    // Category filter (Platzi structure)
     if (filters.CATEGORY !== "All") {
       updated = updated.filter(
         (item) =>
@@ -24,7 +24,7 @@ export default function PLPClient({ products = [] }) {
       );
     }
 
-    // ✅ Sorting (rating not available in Platzi API)
+    //  Sorting (rating not available in Platzi API)
     const sortFunctions = {
       high: (a, b) => b.price - a.price,
       low: (a, b) => a.price - b.price,
@@ -52,7 +52,7 @@ export default function PLPClient({ products = [] }) {
       />
 
       <div className="plp-layout">
-        {/* ✅ Pass products to Sidebar for dynamic categories */}
+        {/* Pass products to Sidebar for dynamic categories */}
         {showFilter && (
           <Sidebar
             products={products}

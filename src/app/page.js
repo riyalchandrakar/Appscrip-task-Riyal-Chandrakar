@@ -1,19 +1,20 @@
 import PLPClient from "../components/PLPClient";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 60; //  Better performance
+
+export const metadata = {
+  title: "Discover Our Products",
+  description:
+    "Browse high-quality fashion, electronics, furniture and lifestyle products at affordable prices. Shop trending collections curated for modern customers.",
+};
 
 async function getProducts() {
   try {
-    const res = await fetch("https://api.escuelajs.co/api/v1/products", {
-      cache: "no-store",
-    });
+    const res = await fetch("https://api.escuelajs.co/api/v1/products");
 
     if (!res.ok) return [];
 
     const data = await res.json();
-
-    // Optional: limit products (API bohot zyada deta hai)
     return data.slice(0, 20);
   } catch (error) {
     console.error("Server Fetch Error:", error);
@@ -26,7 +27,14 @@ export default async function Home() {
 
   return (
     <main className="container">
-      <h1 className="main-title">DISCOVER OUR PRODUCTS</h1>
+      <h1 className="main-title">Discover Our Products</h1>
+
+      <p className="subtitle">
+        Browse high-quality fashion, electronics, furniture and lifestyle
+        essentials at affordable prices. Discover trending collections curated
+        for modern shoppers.
+      </p>
+
       <PLPClient products={products} />
     </main>
   );

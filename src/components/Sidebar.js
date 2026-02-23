@@ -6,7 +6,7 @@ import "../styles/sidebar.css";
 export default function Sidebar({ products = [], filters, setFilters }) {
   const [open, setOpen] = useState(true);
 
-  // ✅ Generate categories dynamically from products
+  // Generate categories dynamically from products
   const categories = useMemo(() => {
     const unique = new Set(
       products.map((p) => p.category?.name).filter(Boolean),
